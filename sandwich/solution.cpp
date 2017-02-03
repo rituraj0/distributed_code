@@ -61,10 +61,10 @@ void slaveProcess() {
 		
 		// update miniSubstring
 		miniSubstringEndingHere += tasteHere;
+		miniSubstring = min(miniSubstring, miniSubstringEndingHere);
 		if(miniSubstringEndingHere > 0) {
 			miniSubstringEndingHere = 0;
 		}
-		miniSubstring = min(miniSubstring, miniSubstringEndingHere);
 
 		// update
 		totalSum += tasteHere;
@@ -74,15 +74,18 @@ void slaveProcess() {
 		minPrefix = min(minPrefix, totalSum);
 	}
 
-	long long minSuffix = totalSum - maxPrefix;
+	long long minSuffix = min(totalSum, totalSum - maxPrefix);
+	minPrefix = min(minPrefix, 0LL);
+	minSuffix = min(minSuffix, 0LL);
+	miniSubstring = min(miniSubstring, 0LL);
 
 	// send all data to master
 	PutLL(0, totalSum);
 	PutLL(0, minPrefix);
 	PutLL(0, minSuffix);
 	PutLL(0, miniSubstring);
-	cout<<currNodeId<<" "<<currRange.first<<" "<<currRange.second<<endl;
-	cout<<currNodeId<<" : "<<totalSum<<" "<<minPrefix<<" "<<minSuffix<<" "<<miniSubstring<<endl;
+	//cout<<currNodeId<<" "<<currRange.first<<" "<<currRange.second<<endl;
+	//cout<<currNodeId<<" : "<<totalSum<<" "<<minPrefix<<" "<<minSuffix<<" "<<miniSubstring<<endl;
     Send(0);
 }
 
@@ -109,19 +112,25 @@ void masterProcess() {
 		minPrefix = GetLL(nodeId);
 		minSuffix = GetLL(nodeId);
 		miniSubstring = GetLL(nodeId);
+
+		//cout<<"Got "<<nodeId<<" "<<totalSum<<" "<<minPrefix<<" "<<minSuffix<<" "<<miniSubstring<<endl;
 		// update allNodeSum
 		allNodeSum += totalSum;
 		// take minPrefix
 		ans = min(ans, currMaxNeg + minPrefix);
 		// take miniSubstring
 		ans = min(ans, miniSubstring);
-		// 
-		currMaxNeg = min(currMaxNeg, currMaxNeg + totalSum);
+		ans = min(ans, minPrefix);
+		ans = min(ans, minSuffix);
+		// update for next node
+		currMaxNeg = currMaxNeg + totalSum;
 		currMaxNeg = min(currMaxNeg, minSuffix);
 		currMaxNeg = min(currMaxNeg, totalSum);
 	}
 
-	cout<<"Final answer is "<<allNodeSum - ans<<endl;
+	cout<<allNodeSum - ans<<endl;
+
+	//cout<<"Final answer is "<<allNodeSum - ans<<endl;
 
 }
 int main() {
