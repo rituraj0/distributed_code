@@ -128,6 +128,8 @@ void masterProcess() {
 		currMaxNeg = min(currMaxNeg, totalSum);
 	}
 
+	cout<<"My answer is   ";
+
 	cout<<allNodeSum - ans<<endl;
 
 	//cout<<"Final answer is "<<allNodeSum - ans<<endl;
