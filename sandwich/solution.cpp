@@ -36,9 +36,99 @@ const double eps    =   1e-8;
 #define fill(a,val) memset(a ,val, sizeof(a) );
 #define sz(s) ((int)(s.size()))
 
+pair<long long, long long> getStartAndEndIndex(long long currNodeId) {
+	long long nodeCount = NumberOfNodes();
+	long long inputCount = GetN();
+	long long start = (inputCount * currNodeId)/nodeCount;
+	long long endIndex = min( inputCount, (inputCount * (currNodeId + 1))/nodeCount );
+	return make_pair(start, endIndex);
+}
 
+void slaveProcess() {
+	int currNodeId = MyNodeId();
+	pair<int, int> currRange = getStartAndEndIndex(currNodeId);
+
+	long long maxPrefix = -(1LL<<62);
+	long long minPrefix = (1LL<<62);
+	long long totalSum = 0;
+	long long miniSubstring = (1LL<<62);
+
+	// find left max 
+	long long miniSubstringEndingHere = 0;
+
+	for(int i=currRange.first; i < currRange.second; i++) {
+		long long tasteHere = GetTaste(i);
+		
+		// update miniSubstring
+		miniSubstringEndingHere += tasteHere;
+		if(miniSubstringEndingHere > 0) {
+			miniSubstringEndingHere = 0;
+		}
+		miniSubstring = min(miniSubstring, miniSubstringEndingHere);
+
+		// update
+		totalSum += tasteHere;
+
+		maxPrefix = max(maxPrefix, totalSum);
+
+		minPrefix = min(minPrefix, totalSum);
+	}
+
+	long long minSuffix = totalSum - maxPrefix;
+
+	// send all data to master
+	PutLL(0, totalSum);
+	PutLL(0, minPrefix);
+	PutLL(0, minSuffix);
+	PutLL(0, miniSubstring);
+	cout<<currNodeId<<" "<<currRange.first<<" "<<currRange.second<<endl;
+	cout<<currNodeId<<" : "<<totalSum<<" "<<minPrefix<<" "<<minSuffix<<" "<<miniSubstring<<endl;
+    Send(0);
+}
+
+void masterProcess() {
+	int currNodeId = MyNodeId();
+
+	if(currNodeId != 0) {
+		// this node is not a master node
+		return;
+	}
+
+	int nodeCount = NumberOfNodes();
+
+	long long totalSum, minPrefix, minSuffix, miniSubstring;
+
+	long long currMaxNeg = 0;
+	long long allNodeSum = 0;
+
+	long long ans = (1LL<<62);
+
+	for(int nodeId=0; nodeId < nodeCount; nodeId++) {
+		Receive(nodeId);
+		totalSum = GetLL(nodeId);
+		minPrefix = GetLL(nodeId);
+		minSuffix = GetLL(nodeId);
+		miniSubstring = GetLL(nodeId);
+		// update allNodeSum
+		allNodeSum += totalSum;
+		// take minPrefix
+		ans = min(ans, currMaxNeg + minPrefix);
+		// take miniSubstring
+		ans = min(ans, miniSubstring);
+		// 
+		currMaxNeg = min(currMaxNeg, currMaxNeg + totalSum);
+		currMaxNeg = min(currMaxNeg, minSuffix);
+		currMaxNeg = min(currMaxNeg, totalSum);
+	}
+
+	cout<<"Final answer is "<<allNodeSum - ans<<endl;
+
+}
 int main() {
-
-	cout<<MyNodeId()<<endl;
+	
+	slaveProcess();
+	
+	masterProcess();
+	
 	return 0;
 }
