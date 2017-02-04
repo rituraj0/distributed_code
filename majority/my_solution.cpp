@@ -49,7 +49,7 @@ void slaveProcessToFindLocalMajority() {
 	pair<int, int> currRange = getStartAndEndIndex(currNodeId);
 
 	long long localMaximum = -1;// 0 ≤ GetVote(i) ≤ 109 
-	long maximumCount = 1;
+	long maximumCount = 0;
 
 	long long currVote;
 
@@ -117,8 +117,14 @@ void slaveProcessToCountAllPotentialMajority() {
 	// Receive nodeCount message from mater
 	Receive(0);
 
+	vector<long long> allLocalMajority;
+
+	long long temp;
+
 	for(int i=0; i < nodeCount; i++) {
-		contOfLocalMaximums[ GetLL(0) ] = 0;
+		temp = GetLL(0);
+		allLocalMajority.push_back(temp);
+		contOfLocalMaximums[temp] = 0;
 	}
 
 	for(int i = currRange.first; i < currRange.second; i++) {
@@ -128,9 +134,11 @@ void slaveProcessToCountAllPotentialMajority() {
 		}
 	}
 
-	for(auto it : contOfLocalMaximums) {
-		PutLL(0, it.first);
-		PutLL(0, it.second);
+	//cout<<"Sent by"<<currNodeId<<" "<<allLocalMajority.size()<<endl;
+
+	for(auto local : allLocalMajority) {
+		PutLL(0, local);
+		PutLL(0, contOfLocalMaximums[local]);
 	}
 	Send(0);
 }
@@ -149,17 +157,14 @@ void masterProcessToTakeFinalDecision() {
 
 	long long number, numberCount;
 
-	cout<<"masterProcessToTakeFinalDecision\n"<<endl;
+	//cout<<"masterProcessToTakeFinalDecision\n"<<endl;
 
 	for(int nodeId=0; nodeId < nodeCount; nodeId++) {
 		Receive(nodeId);
-
-		cout<<"Received from "<<nodeId<<endl;
-
 		for(int message=0; message < nodeCount; message++) {
 			number = GetLL(nodeId);
 			numberCount = GetLL(nodeId);
-			cout<<number<<" "<<numberCount<<endl;
+			//cout<<"Received from "<<nodeId<<" "<<number<<" "<<numberCount<<endl;
 			allCount[number] += numberCount;
 		}
 	}
