@@ -19,7 +19,7 @@ def buildSolutions():
 
 for testCount in range(10):
 	print("\n\nTest: {0}".format(testCount))
-	inputCount = randint(1, (1<<10))
+	inputCount = randint(1, (1<<15))
 	print("Input Count " + str(inputCount))
 	# Generate test file
 	call(shlex.split('python generateTest.py {0} {1}'.format(inputCount, fileName)))

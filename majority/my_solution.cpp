@@ -171,8 +171,10 @@ void masterProcessToTakeFinalDecision() {
 
 	long long inputCount = GetN();
 
+	cout<<"MY answer ";
 	for(auto keyValue : allCount) {
 		if(keyValue.second >= (inputCount + 1)/2LL) {
+
 			cout<<keyValue.first<<endl;
 			return;
 		}
@@ -192,3 +194,66 @@ int main() {
 	
 	return 0;
 }
+
+
+/*
+My solution:
+Could have done better if instead of counting all local maximum, get local maximum of local maximum at node 0
+and send it to slaves to count again,
+in same way correct_solution does
+
+*/
+
+/*
+
+ // Merge, candidate generation, and resubmit
+  if (MyNodeId() == 0) {
+    ll k = -1, n = 0;
+    for (int i = 0; i < NumberOfNodes(); ++i) {
+      Receive(i);
+      ll tk = GetLL(i);
+      ll tn = GetLL(i);
+
+      if (k == tk) {
+        n += tn;
+      } else {
+        n -= tn;
+        if (n < 0) {
+          k = tk;
+          n = -n;
+        }
+      }
+    }
+
+    for (int i = 0; i < NumberOfNodes(); ++i) {
+      PutLL(i, k);
+      Send(i);
+    }
+  }
+
+  // Count and confirm
+  {
+    Receive(0);
+    ll k = GetLL(0), n = 0;
+    // printf("k = %lld\n", k);
+    for (ll i = MyNodeId(); i < GetN(); i += NumberOfNodes()) {
+      ll x = GetVote(i);
+      if (x == k) ++n;
+    }
+    PutLL(0, n);
+    Send(0);
+
+    if (MyNodeId() == 0) {
+      ll n = 0;
+      for (int i = 0; i < NumberOfNodes(); ++i) {
+        Receive(i);
+        n += GetLL(i);
+      }
+
+      if (n * 2 > GetN()) printf("%lld\n", k);
+      else puts("NO WINNER");
+    }
+  }
+
+
+  */
