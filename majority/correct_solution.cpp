@@ -1,5 +1,5 @@
 #include <message.h>
-#include "sandwich.h"
+#include "majority.h"
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -27,51 +27,77 @@ using namespace std;
 
 typedef long long ll;
 
-pair<ll, ll> divide(ll n) {
-  auto f = [](ll n, int i, int k) { return n * i / k; };
-  return make_pair(f(n, MyNodeId(), NumberOfNodes()),
-                   f(n, MyNodeId() + 1, NumberOfNodes()));
-}
 
 int main() {
-  // Local computation
-  ll nl, nr;
-  tie(nl, nr) = divide(GetN());
-
-  // Total and left max
+  // Local
   {
-    ll s = 0, sl = 0, sr = 0, sans = 0;
-    for (ll i = nl; i < nr; ++i) {
-      ll x = -GetTaste(i);;
-      s += x;
-      sl = max(sl, s);
-      sr = max(sr + x, 0LL);
-      sans = max(sans, sr);
+    ll k = -1, n = 0;
+    for (ll i = MyNodeId(); i < GetN(); i += NumberOfNodes()) {
+      ll x = GetVote(i);
+      if (x == k) {
+        ++n;
+      } else {
+        if (n == 0) {
+          k = x;
+          n = 1;
+        } else {
+          --n;
+        }
+      }
     }
 
-    // Send it, and compute!
-    PutLL(0, s);
-    PutLL(0, sl);
-    PutLL(0, sr);
-    PutLL(0, sans);
-    // printf("[%lld, %lld): %lld %lld %lld %lld\n", nl, nr, s, sl, sr, sans);
+    PutLL(0, k);
+    PutLL(0, n);
     Send(0);
   }
 
-  // DP
+  // Merge, candidate generation, and resubmit
   if (MyNodeId() == 0) {
-    ll ans = 0, dp = 0, total = 0;
+    ll k = -1, n = 0;
     for (int i = 0; i < NumberOfNodes(); ++i) {
       Receive(i);
-      ll ts = GetLL(i);
-      ll tsl = GetLL(i);
-      ll tsr = GetLL(i);
-      ll tsans = GetLL(i);
-      ans = max(ans, max(tsans, dp + tsl));
-      dp = max(dp + ts, tsr);
-      total += ts;
+      ll tk = GetLL(i);
+      ll tn = GetLL(i);
+
+      if (k == tk) {
+        n += tn;
+      } else {
+        n -= tn;
+        if (n < 0) {
+          k = tk;
+          n = -n;
+        }
+      }
     }
-    printf("%lld\n", -(total - ans));
+
+    for (int i = 0; i < NumberOfNodes(); ++i) {
+      PutLL(i, k);
+      Send(i);
+    }
+  }
+
+  // Count and confirm
+  {
+    Receive(0);
+    ll k = GetLL(0), n = 0;
+    // printf("k = %lld\n", k);
+    for (ll i = MyNodeId(); i < GetN(); i += NumberOfNodes()) {
+      ll x = GetVote(i);
+      if (x == k) ++n;
+    }
+    PutLL(0, n);
+    Send(0);
+
+    if (MyNodeId() == 0) {
+      ll n = 0;
+      for (int i = 0; i < NumberOfNodes(); ++i) {
+        Receive(i);
+        n += GetLL(i);
+      }
+
+      if (n * 2 > GetN()) printf("%lld\n", k);
+      else puts("NO WINNER");
+    }
   }
 
   return 0;

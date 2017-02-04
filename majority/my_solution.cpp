@@ -177,7 +177,7 @@ void masterProcessToTakeFinalDecision() {
 			return;
 		}
 	}
-	cout<<"NO ANSWER"<<endl;
+	cout<<"NO WINNER"<<endl;
 }
 
 int main() {
