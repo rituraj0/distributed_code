@@ -1,0 +1,380 @@
+6221045876
+My answer is   6221045876
+6221045876
+My answer is   6221045876
+16683738099
+My answer is   16683738099
+16683738099
+My answer is   16683738099
+29332451764
+My answer is   29332451764
+29332451764
+My answer is   29332451764
+46521018170
+My answer is   46521018170
+46521018170
+My answer is   46521018170
+6846955509
+My answer is   6846955509
+6846955509
+My answer is   6846955509
+5255100578
+My answer is   5255100578
+5255100578
+My answer is   5255100578
+19484904223
+My answer is   19484904223
+19484904223
+My answer is   19484904223
+36318745608
+My answer is   36318745608
+36318745608
+My answer is   36318745608
+7208077917
+My answer is   7208077917
+7208077917
+My answer is   7208077917
+9567023136
+My answer is   9567023136
+9567023136
+My answer is   9567023136
+
+
+Test: 0
+Input Count 639
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 1
+Input Count 273
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 2
+Input Count 457
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 3
+Input Count 739
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 4
+Input Count 507
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 5
+Input Count 628
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 6
+Input Count 477
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 7
+Input Count 496
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 8
+Input Count 374
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 9
+Input Count 225
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+25479788366
+My answer is   25479788366
+25479788366
+My answer is   25479788366
+3915212882
+My answer is   3915212882
+3915212882
+My answer is   3915212882
+18524176994
+My answer is   18524176994
+18524176994
+My answer is   18524176994
+30765109935
+My answer is   30765109935
+30765109935
+My answer is   30765109935
+11547931786
+My answer is   11547931786
+11547931786
+My answer is   11547931786
+15428058300
+My answer is   15428058300
+15428058300
+My answer is   15428058300
+20817514534
+My answer is   20817514534
+20817514534
+My answer is   20817514534
+8423429430
+My answer is   8423429430
+8423429430
+My answer is   8423429430
+37794351227
+My answer is   37794351227
+37794351227
+My answer is   37794351227
+22480838294
+My answer is   22480838294
+22480838294
+My answer is   22480838294
+
+
+Test: 0
+Input Count 918
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 1
+Input Count 798
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 2
+Input Count 260
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 3
+Input Count 418
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 4
+Input Count 830
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 5
+Input Count 438
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 6
+Input Count 366
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 7
+Input Count 790
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 8
+Input Count 510
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
+
+
+Test: 9
+Input Count 365
+Generated file sandwich.h
+Building my solution
+Building correct solution
+
+Testing on nodes 10
+Running correct solution
+Running MY solution
+
+Testing on nodes 100
+Running correct solution
+Running MY solution
